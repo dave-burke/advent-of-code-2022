@@ -1,6 +1,7 @@
 (ns aoc.core
   (:require [aoc.day1]
-            [aoc.day02]))
+            [aoc.day02]
+            [aoc.day03]))
 
 (defn read-input
   [day]
@@ -9,4 +10,4 @@
 (defn -main
   "Advent of Code 2022"
   []
-  (println (aoc.day02/part2 (read-input "day02.txt"))))
+  (println (aoc.day03/part1 (read-input "day03-example.txt"))))
