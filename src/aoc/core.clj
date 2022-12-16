@@ -10,4 +10,4 @@
 (defn -main
   "Advent of Code 2022"
   []
-  (println (aoc.day03/part1 (read-input "day03-example.txt"))))
+  (println (aoc.day03/part1 (read-input "day03.txt"))))
