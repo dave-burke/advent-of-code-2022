@@ -1,5 +1,5 @@
 (ns aoc.core
-  (:require [aoc.day1]
+  (:require [aoc.day01]
             [aoc.day02]
             [aoc.day03]))
 
