@@ -8,7 +8,7 @@
 ; A = Rock, B = Paper, C = Scissors
 ; X = Rock, Y = Paper, Z = Scissors
 
-(defn parse-lines [lines]
+(defn parse-lines-1 [lines]
   (let [results {
                 "A X" [:rock :rock]
                 "A Y" [:rock :paper]
@@ -50,12 +50,33 @@
   "Day 02 Part 1"
   [input]
   (->> (str/split input #"\n")
-       (parse-lines) ; line -> keys
+       (parse-lines-1) ; line -> keys
        (score-games) ; keys -> score
        (reduce +))) ; sum
+
+; X = Lose
+; Y = Draw
+; Z = Win
+(defn parse-lines-2
+  [lines]
+  (let [results {
+                "A X" [:rock :scissors]
+                "A Y" [:rock :rock]
+                "A Z" [:rock :paper]
+                "B X" [:paper :rock]
+                "B Y" [:paper :paper]
+                "B Z" [:paper :scissors]
+                "C X" [:scissors :paper]
+                "C Y" [:scissors :scissors]
+                "C Z" [:scissors :rock]
+                }]
+    (map #(results %) lines)))
 
 (defn part2
   "Day 02 Part 2"
   [input]
-  input)
+  (->> (str/split input #"\n")
+       (parse-lines-2) ; line -> keys
+       (score-games) ; keys -> score
+       (reduce +))) ; sum
 
