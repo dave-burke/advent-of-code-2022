@@ -6,6 +6,6 @@
   (slurp (clojure.java.io/resource day)))
 
 (defn -main
-  "I don't do a whole lot."
+  "Advent of Code 2022"
   []
-  (println (aoc.day1/part1 (read-input "day01-example.txt"))))
+  (println (aoc.day1/part1 (read-input "day01.txt"))))
