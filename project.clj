@@ -1,9 +1,9 @@
 
 (defproject aoc "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-            :url "https://www.eclipse.org/legal/epl-2.0/"}
+  :description "My Advent of Code solutions for 2022"
+  :url "https://github.com/dave-burke/advent-of-code-2022"
+  :license {:name "GPL-3.0-or-later"
+            :url "https://www.gnu.org/licenses/gpl-3.0.txt"}
   :main "aoc.core"
   :dependencies [[org.clojure/clojure "1.11.1"]]
   :repl-options {:init-ns aoc.core})
