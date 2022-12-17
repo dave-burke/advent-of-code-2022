@@ -17,7 +17,7 @@
 
 (defn to-intersections
   [sets]
-  (first (set/intersection (first sets) (first (rest sets)))))
+  (first (apply set/intersection sets)))
 
 (defn to-priorities
   [character]
@@ -50,7 +50,7 @@
   (->> (str/split-lines input)
        (map set)
        (split-by-three)
-       (map (fn [group] (set/intersection (nth group 0) (nth group 1) (nth group 2))))
+       (map (fn [group-of-three] (apply set/intersection group-of-three)))
        (map first)
        (map to-priorities)
        (reduce +)))
