@@ -37,7 +37,21 @@
        (map to-priorities) ; #{intersection} -> priority
        (reduce +))) ; sum
 
+(defn split-by-three
+  ([lines] (split-by-three [(take 3 lines)] (drop 3 lines)))
+  ([groups remaining]
+    (if (empty? remaining)
+      groups
+      (split-by-three (conj groups (take 3 remaining)) (drop 3 remaining)))))
+
 (defn part2
   "Day 03 Part 2"
   [input]
-  input)
+  (->> (str/split-lines input)
+       (map set)
+       (split-by-three)
+       (map (fn [group] (set/intersection (nth group 0) (nth group 1) (nth group 2))))
+       (map first)
+       (map to-priorities)
+       (reduce +)))
+
