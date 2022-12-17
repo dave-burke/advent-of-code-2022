@@ -1,7 +1,8 @@
 (ns aoc.core
   (:require [aoc.day01]
             [aoc.day02]
-            [aoc.day03]))
+            [aoc.day03]
+            [aoc.day04]))
 
 (defn read-input
   [day]
@@ -21,7 +22,9 @@
                      "02.1" (aoc.day02/part1 (read-input input-file))
                      "02.2" (aoc.day02/part2 (read-input input-file))
                      "03.1" (aoc.day03/part1 (read-input input-file))
-                     "03.2" (aoc.day03/part2 (read-input input-file)))]
+                     "03.2" (aoc.day03/part2 (read-input input-file))
+                     "04.1" (aoc.day04/part1 (read-input input-file))
+                     "04.2" (aoc.day04/part2 (read-input input-file)))]
         (println result)
         result))))
 

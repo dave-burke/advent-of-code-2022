@@ -14,4 +14,7 @@
   (testing "Day 03 Part 1 example"
     (is (= 157 (-main "03" "1" "example"))))
   (testing "Day 03 Part 2 example"
-    (is (= 70 (-main "03" "2" "example")))))
+    (is (= 70 (-main "03" "2" "example"))))
+  (testing "Day 04 Part 1 example"
+    (is (= 2 (-main "04" "1" "example")))))
+
