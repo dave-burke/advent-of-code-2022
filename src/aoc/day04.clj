@@ -12,7 +12,7 @@
   (let [ranges (str/split line #",")]
     (map parse-range ranges)))
 
-(defn ranges-overlap?
+(defn ranges-overlap-fully?
   [a b]
   (let [a0 (nth a 0)
         a1 (nth a 1)
@@ -31,10 +31,22 @@
   [input]
   (->> (str/split-lines input)
        (map parse-line)
-       (count-if #(apply ranges-overlap? %))))
+       (count-if #(apply ranges-overlap-fully? %))))
+
+(defn ranges-overlap?
+  [a b]
+  (let [a0 (nth a 0)
+        a1 (nth a 1)
+        b0 (nth b 0)
+        b1 (nth b 1)]
+    (or
+      (and (<= a0 b0) (>= a1 b0))
+      (and (<= b0 a0) (>= b1 a0)))))
 
 (defn part2
   "Day 04 Part 2"
   [input]
-  input)
+  (->> (str/split-lines input)
+       (map parse-line)
+       (count-if #(apply ranges-overlap? %))))
 
