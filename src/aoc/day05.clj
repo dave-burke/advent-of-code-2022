@@ -44,10 +44,26 @@
     {:stacks (parse-stacks stack-lines (range last-index))
      :moves (parse-move-lines moves-lines)}))
 
+(defn- print-stacks
+  [stack-map]
+  (doseq [[k v] (map identity stack-map)]
+          (println k (reverse v))))
+
+(defn- print-moves
+  [moves]
+  (doseq [move moves]
+    (let [amount (:amount move)
+          from (:from-index move)
+          to (:to-index move)]
+      (println "move" amount "from" from "to" to))))
+
 (defn part1
   "Day 05 Part 1"
   [input]
-  (parse-input input))
+  (let [input-model (parse-input input)]
+    (print-stacks (:stacks input-model))
+    (print-moves (:moves input-model)))
+  "")
 
 (defn part2
   "Day 05 Part 2"
