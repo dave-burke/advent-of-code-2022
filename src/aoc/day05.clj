@@ -8,9 +8,15 @@
   (let [char-index (+ (* 4 n) 1)]
     (map #(nth % char-index " ") stack-rows)))
 
-(defn- parse-move-input
+(defn- parse-move-line
+  [line]
+  (let [matches (rest (re-find #"move (\d+) from (\d+) to (\d+)" line))
+        numbers (map #(Integer/parseInt %) matches)]
+    (zipmap [:amount :from-index :to-index] numbers)))
+
+(defn- parse-move-lines
   [move-lines]
-  move-lines)
+  (map parse-move-line move-lines))
 
 (defn- parse-input
   [input]
@@ -22,7 +28,7 @@
         moves-lines (clojure.string/split (second input-parts) #"\n")]
     {:stacks stack-lines
      :indices (range last-index)
-     :moves moves-lines}))
+     :moves (parse-move-lines moves-lines)}))
 
 (defn part1
   "Day 05 Part 1"
