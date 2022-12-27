@@ -44,6 +44,19 @@
     {:stacks (parse-stacks stack-lines (range last-index))
      :moves (parse-move-lines moves-lines)}))
 
+(defn- move-crate
+  ([stack-map from-index to-index]
+   (let [from-stack (get stack-map from-index)
+         crate (first from-stack)
+         new-from-stack (rest from-stack)
+         to-stack (get stack-map to-index)
+         new-to-stack (conj to-stack crate)]
+     (assoc (assoc stack-map from-index new-from-stack) to-index new-to-stack))))
+
+(defn- move-crates
+  [stack-map move]
+  (nth (iterate #(move-crate % (:from-index move) (:to-index move)) stack-map) (:amount move)))
+
 (defn- print-stacks
   [stack-map]
   (doseq [[k v] (map identity stack-map)]
@@ -60,10 +73,12 @@
 (defn part1
   "Day 05 Part 1"
   [input]
-  (let [input-model (parse-input input)]
+  (let [input-model (parse-input input)
+        stack-map (:stacks input-model)
+        moves (:moves input-model)]
     (print-stacks (:stacks input-model))
-    (print-moves (:moves input-model)))
-  "")
+    (print-moves (:moves input-model))
+    (clojure.string/join (map first (vals (reduce move-crates stack-map moves))))))
 
 (defn part2
   "Day 05 Part 2"
