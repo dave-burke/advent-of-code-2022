@@ -44,19 +44,6 @@
     {:stacks (parse-stacks stack-lines (range last-index))
      :moves (parse-move-lines moves-lines)}))
 
-(defn- move-crate
-  ([stack-map from-index to-index]
-   (let [from-stack (get stack-map from-index)
-         crate (first from-stack)
-         new-from-stack (rest from-stack)
-         to-stack (get stack-map to-index)
-         new-to-stack (conj to-stack crate)]
-     (assoc (assoc stack-map from-index new-from-stack) to-index new-to-stack))))
-
-(defn- move-crates
-  [stack-map move]
-  (nth (iterate #(move-crate % (:from-index move) (:to-index move)) stack-map) (:amount move)))
-
 (defn- print-stacks
   [stack-map]
   (doseq [[k v] (map identity stack-map)]
@@ -70,12 +57,33 @@
           to (:to-index move)]
       (println "move" amount "from" from "to" to))))
 
+(defn- move-crate
+  ([stack-map from-index to-index]
+   (let [from-stack (get stack-map from-index)
+         crate (first from-stack)
+         new-from-stack (rest from-stack)
+         to-stack (get stack-map to-index)
+         new-to-stack (conj to-stack crate)]
+     (assoc (assoc stack-map from-index new-from-stack) to-index new-to-stack))))
+
+(defn- move-crates
+  [stack-map move]
+  (let [from-index (:from-index move)
+        to-index (:to-index move)
+        amount (:amount move)
+        result (nth (iterate #(move-crate % from-index to-index) stack-map) amount)]
+    result))
+
 (defn part1
   "Day 05 Part 1"
   [input]
   (let [input-model (parse-input input)
-        result-stacks (reduce move-crates (:stacks input-model) (:moves input-model))]
-        (clojure.string/join (map first (vals result-stacks)))))
+        result-stacks (reduce move-crates (:stacks input-model) (:moves input-model))
+        sorted-stacks (into (sorted-map) result-stacks)]
+    (print-stacks sorted-stacks)
+    (clojure.string/join (map first (vals sorted-stacks)))))
+
+; Solution is not 'CZJSLRRGT'
 
 (defn part2
   "Day 05 Part 2"
