@@ -85,8 +85,25 @@
 
 ; Solution is not 'CZJSLRRGT'
 
+(defn- move-crates-2
+  ([stack-map move]
+   (let [from-index (:from-index move)
+         to-index (:to-index move)
+         amount (:amount move)
+         from-stack (get stack-map from-index)
+         to-stack (get stack-map to-index)
+         crates (take amount from-stack)
+         new-from-stack (nthrest from-stack amount)
+         new-to-stack (concat crates to-stack)]
+     (assoc (assoc stack-map from-index new-from-stack) to-index new-to-stack))))
+
+
 (defn part2
   "Day 05 Part 2"
   [input]
-  input)
+  (let [input-model (parse-input input)
+        result-stacks (reduce move-crates-2 (:stacks input-model) (:moves input-model))
+        sorted-stacks (into (sorted-map) result-stacks)]
+    (print-stacks sorted-stacks)
+    (clojure.string/join (map first (vals sorted-stacks)))))
 
