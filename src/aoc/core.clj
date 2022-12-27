@@ -2,7 +2,8 @@
   (:require [aoc.day01]
             [aoc.day02]
             [aoc.day03]
-            [aoc.day04]))
+            [aoc.day04]
+            [aoc.day05]))
 
 (defn read-input
   [day]
@@ -24,7 +25,9 @@
                      "03.1" (aoc.day03/part1 (read-input input-file))
                      "03.2" (aoc.day03/part2 (read-input input-file))
                      "04.1" (aoc.day04/part1 (read-input input-file))
-                     "04.2" (aoc.day04/part2 (read-input input-file)))]
+                     "04.2" (aoc.day04/part2 (read-input input-file))
+                     "05.1" (aoc.day05/part1 (read-input input-file))
+                     "05.2" (aoc.day05/part2 (read-input input-file)))]
         (println result)
         result))))
 
