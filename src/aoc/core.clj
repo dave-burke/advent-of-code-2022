@@ -4,7 +4,8 @@
             [aoc.day03]
             [aoc.day04]
             [aoc.day05]
-            [aoc.day06]))
+            [aoc.day06]
+            [aoc.day07]))
 
 (defn read-input
   [day]
@@ -30,7 +31,9 @@
                      "05.1" (aoc.day05/part1 (read-input input-file))
                      "05.2" (aoc.day05/part2 (read-input input-file))
                      "06.1" (aoc.day06/part1 (read-input input-file))
-                     "06.2" (aoc.day06/part2 (read-input input-file)))]
+                     "06.2" (aoc.day06/part2 (read-input input-file))
+                     "07.1" (aoc.day07/part1 (read-input input-file))
+                     "07.2" (aoc.day07/part2 (read-input input-file)))]
         (println result)
         result))))
 
