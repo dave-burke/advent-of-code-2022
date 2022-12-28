@@ -22,5 +22,7 @@
   (testing "Day 05 Part 1 example"
     (is (= "CMZ" (-main "05" "1" "example"))))
   (testing "Day 05 Part 2 example"
-    (is (= "MCD" (-main "05" "2" "example")))))
+    (is (= "MCD" (-main "05" "2" "example"))))
+  (testing "Day 06 Part 1 example 1"
+    (is (= "7" (-main "06" "1" "example-1")))))
 

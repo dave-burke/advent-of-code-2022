@@ -3,7 +3,8 @@
             [aoc.day02]
             [aoc.day03]
             [aoc.day04]
-            [aoc.day05]))
+            [aoc.day05]
+            [aoc.day06]))
 
 (defn read-input
   [day]
@@ -14,7 +15,7 @@
   ([day] (-main day "1" nil))
   ([day part] (-main day (Integer/parseInt part) nil))
   ([day part example]
-    (let [input-file (str "day" day (if example "-example.txt" ".txt"))
+    (let [input-file (str "day" day (if example (str "-" example ".txt") ".txt"))
           puzzle (str day "." part)]
       (println "Running Day" day "Part" part "as" puzzle "reading" input-file)
       (let [result (case puzzle
@@ -27,7 +28,9 @@
                      "04.1" (aoc.day04/part1 (read-input input-file))
                      "04.2" (aoc.day04/part2 (read-input input-file))
                      "05.1" (aoc.day05/part1 (read-input input-file))
-                     "05.2" (aoc.day05/part2 (read-input input-file)))]
+                     "05.2" (aoc.day05/part2 (read-input input-file))
+                     "06.1" (aoc.day06/part1 (read-input input-file))
+                     "06.2" (aoc.day06/part2 (read-input input-file)))]
         (println result)
         result))))
 
