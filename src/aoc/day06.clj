@@ -28,5 +28,9 @@
 (defn part2
   "Day 06 Part 2"
   [input]
-  input)
+  (let [groups-of-four ((window-scanner 14) input)
+        first-unique-group (first (filter all-unique? groups-of-four))
+        unique-string (clojure.string/join first-unique-group)
+        unique-string-index (clojure.string/index-of input unique-string)]
+    (+ 14 unique-string-index)))
 
